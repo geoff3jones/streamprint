@@ -101,6 +101,12 @@ template <typename T> void setOpts(T &out, char *optstr) {
   if ((opt = strchr(optstr, 'f')) != nullptr) {
     out << std::setfill(*(opt + 1));
   }
+  if ((opt = strchr(optstr, 'L')) != nullptr) {
+    out << std::left;
+  }
+  if ((opt = strchr(optstr, 'R')) != nullptr) {
+    out << std::right;
+  }
 }
 template <typename T> char *checkSetOpts(T &out, char *f) {
   if (f != nullptr) {
@@ -170,6 +176,7 @@ auto print(T &out, Args &&... args) -> T & {
  *        p[num]  - set stream precsision
  *        m[xshd] - set float number format x:fixed, s:scientific, h:hexfloat,
  *                  d:default
+ *        RL      - set align left or righ
  *     for example {f w10mxp3} means ' ' filled 10 wide fixed point 3 precsision
  * @args the variables
  * e.g. fprint(outstream,"arg0 in -> {mdp5} arg1 in -> {f w15}...",arg0,arg1,...)
@@ -194,6 +201,7 @@ auto fprint(T &out, const char(&f)[N], Args &&... v)
  *        p[num]  - set stream precsision
  *        m[xshd] - set float number format x:fixed, s:scientific, h:hexfloat,
  *                  d:default
+ *        RL      - set align left or righ
  *     for example {f w10mxp3} means ' ' filled 10 wide fixed point 3 precsision
  * @args the variables
  * e.g. fprint(outstream,"",arg0,arg1,...)
@@ -216,6 +224,7 @@ auto fprint(T &out, const char(&f)[N], Args &&... v)
  *        p[num]  - set stream precsision
  *        m[xshd] - set float number format x:fixed, s:scientific, h:hexfloat,
  *                  d:default
+ *        RL      - set align left or righ
  *     for example {f w10mxp3} means ' ' filled 10 wide fixed point 3 precsision
  * @args the variables
  * e.g. fprint(outstream,fmt_ptr,arg0,arg1,...)
